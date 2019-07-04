@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    欢迎<span th:text="${username}">***</span>访问购物商场，请点击以下连接进行激活
+    <a href="http://localhost:9090/" th:href="${href}">地址</a>
+</body>
+</html>

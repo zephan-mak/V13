@@ -1,0 +1,11 @@
+dubbo:
+  application:
+    name: login-web
+  registry:
+    protocol: zookeeper
+    address: 192.168.216.129:2181
+server:
+  port: 9095
+spring:
+  thymeleaf:
+    cache: false

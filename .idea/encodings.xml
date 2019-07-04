@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/demo" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/v13-basic/v13-mapper" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/v13-service/v13-cart-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/v13-service/v13-common-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/v13-service/v13-product-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/v13-service/v13-search-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/v13-service/v13-user-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/v13-temp/springboot-redis" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/v13-temp/temp-SMS" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/v13-temp/temp-bcrypt" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/v13-temp/temp-email" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/v13-temp/temp-rabbitmq-springboots" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/v13-temp/temp-timer" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/v13-web/v13-cart-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/v13-web/v13-center-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/v13-web/v13-index-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/v13-web/v13-item-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/v13-web/v13-login-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/v13-web/v13-pay-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/v13-web/v13-register-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/v13-web/v13-search-web" charset="UTF-8" />
+  </component>
+</project>

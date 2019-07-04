@@ -1,0 +1,22 @@
+dubbo:
+  application:
+    name: register-web
+    qosPort: 33333
+  registry:
+    protocol: zookeeper
+    address: 192.168.216.129:2181
+server:
+  port: 9094
+spring:
+  thymeleaf:
+    cache: false
+  rabbitmq:
+    host: 192.168.216.129
+    virtual-host: /java1902
+    port: 5672
+    username: admin
+    password: admin
+  redis:
+    host: 192.168.216.129
+    port: 6379
+    password: java1902

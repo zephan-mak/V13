@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="demo" />
+        <module name="springboot-redis" />
+        <module name="temp-BCrypt" />
+        <module name="temp-email" />
+        <module name="temp-httpClient" />
+        <module name="temp-JJWT" />
+        <module name="temp-RabbitMQ" />
+        <module name="temp-rabbitmq-springboots" />
+        <module name="temp-redis" />
+        <module name="temp-SMS" />
+        <module name="temp-timer" />
+        <module name="temp-zookeeper" />
+        <module name="v13-cart-api" />
+        <module name="v13-cart-service" />
+        <module name="v13-cart-web" />
+        <module name="v13-center-web" />
+        <module name="v13-common" />
+        <module name="v13-common-api" />
+        <module name="v13-common-service" />
+        <module name="v13-entity" />
+        <module name="v13-index-web" />
+        <module name="v13-item-web" />
+        <module name="v13-login-web" />
+        <module name="v13-mapper" />
+        <module name="v13-pay-web" />
+        <module name="v13-product-api" />
+        <module name="v13-product-service" />
+        <module name="v13-register-web" />
+        <module name="v13-search-service" />
+        <module name="v13-search-web" />
+        <module name="v13-searvch-api" />
+        <module name="v13-service" />
+        <module name="v13-user-api" />
+        <module name="v13-user-service" />
+        <module name="v13searchapi" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="a" target="1.5" />
+      <module name="b" target="1.5" />
+      <module name="v13-search-api" target="1.5" />
+      <module name="v13-serach-web" target="1.8" />
+      <module name="v13-serach-web1" target="1.8" />
+      <module name="v13searchapi" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="demo" options="-parameters" />
+      <module name="springboot-redis" options="-parameters" />
+      <module name="temp-BCrypt" options="-parameters" />
+      <module name="temp-SMS" options="-parameters" />
+      <module name="temp-email" options="-parameters" />
+      <module name="temp-rabbitmq-springboots" options="-parameters" />
+      <module name="temp-timer" options="-parameters" />
+      <module name="v13-cart-service" options="-parameters" />
+      <module name="v13-cart-web" options="-parameters" />
+      <module name="v13-center-web" options="-parameters" />
+      <module name="v13-common-service" options="-parameters" />
+      <module name="v13-index-web" options="-parameters" />
+      <module name="v13-item-web" options="-parameters" />
+      <module name="v13-login-web" options="-parameters" />
+      <module name="v13-mapper" options="-parameters" />
+      <module name="v13-pay-web" options="-parameters" />
+      <module name="v13-product-service" options="-parameters" />
+      <module name="v13-register-web" options="-parameters" />
+      <module name="v13-search-service" options="-parameters" />
+      <module name="v13-search-web" options="-parameters" />
+      <module name="v13-serach-web" options="-parameters" />
+      <module name="v13-serach-web1" options="-parameters" />
+      <module name="v13-user-service" options="-parameters" />
+    </option>
+  </component>
+</project>
