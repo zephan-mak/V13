@@ -1,15 +1,14 @@
 package com.qf.v13loginweb.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qf.v13.api.IUserService;
 import com.qf.v13.common.pojo.ResultBean;
-import com.qf.v13.common.utils.TokenUtils;
 import com.qf.v13.entity.TUser;
-import io.jsonwebtoken.Claims;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -43,11 +42,8 @@ public class LoginController {
         ResultBean resultBean = userService.login(user);
         String referer = userService.getReferer();
         if("200".equals(resultBean.getStatusCode())){
-            Cookie cookie=new Cookie(COOKIENAME, resultBean.getData().toString());
-            cookie.setPath("/");
-            cookie.setHttpOnly(true);
-            cookie.setDomain("qf.com");
-            response.addCookie(cookie);
+            String uuid=resultBean.getData().toString();
+            RefreshCookie(response, uuid);
             if(referer.contains("register")||referer.contains("login")){
                 return "redirect:http://www.qf.com:9091/index/home";
             }else {
@@ -57,18 +53,27 @@ public class LoginController {
         return "redirect:login";
     }
 
+
+
     @RequestMapping("checkLogin")
     @ResponseBody
     @CrossOrigin(origins = "*",allowCredentials = "true")
-    public ResultBean checkLogin(@CookieValue(name = COOKIENAME,required = false) String uuid){
+    public ResultBean checkLogin(@CookieValue(name = COOKIENAME,required = false) String uuid, HttpServletResponse response){
         if(uuid!=null){
             ResultBean resultBean = userService.checkLogin(uuid);
-
-            TUser user= (TUser) resultBean.getData();
-            return new ResultBean("200", user);
+            if("200".equals(resultBean.getStatusCode())){
+                HashMap<String,Object> data = (HashMap<String, Object>) resultBean.getData();
+                TUser user = (TUser) data.get("user");
+                uuid = (String) data.get("uuid");
+                RefreshCookie(response, uuid);
+                return new ResultBean("200", user);
+            }else{
+                delCookie(uuid, response);
+                return new ResultBean("404", resultBean.getData());
+            }
 
         }
-        return new ResultBean("404", null);
+        return new ResultBean("500", null);
     }
 
 //    @RequestMapping("checkLoginJsonP")
@@ -107,14 +112,24 @@ public class LoginController {
     public ResultBean loginOut(@CookieValue(name =COOKIENAME,required = false) String uuid, HttpServletResponse response){
         if(uuid!=null){
 //            ResultBean resultBean = userService.loginOut(uuid);
-            Cookie cookie=new Cookie(COOKIENAME, uuid);
-            cookie.setMaxAge(0);
-            cookie.setPath("/");
-            cookie.setDomain("qf.com");
-            response.addCookie(cookie);
+            delCookie(uuid, response);
             return new ResultBean("200", "注销成功");
         }
         return new ResultBean("404", null);
+    }
+    private void RefreshCookie(HttpServletResponse response, String uuid) {
+        Cookie cookie = new Cookie(COOKIENAME, uuid);
+        cookie.setPath("/");
+        cookie.setHttpOnly(true);
+        cookie.setDomain("qf.com");
+        response.addCookie(cookie);
+    }
+    private void delCookie(@CookieValue(name = COOKIENAME, required = false) String uuid, HttpServletResponse response) {
+        Cookie cookie = new Cookie(COOKIENAME, uuid);
+        cookie.setMaxAge(0);
+        cookie.setPath("/");
+        cookie.setDomain("qf.com");
+        response.addCookie(cookie);
     }
 
     @RequestMapping("getReferer")

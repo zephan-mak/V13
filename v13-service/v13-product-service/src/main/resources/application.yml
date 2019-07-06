@@ -18,8 +18,11 @@ public-key: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBANwPwSCd89R/m0XFDib6gN39QTAw967uq4qO
 dubbo:
   application:
     name: product-api
+    qos-port: 22222
   registry:
     protocol: zookeeper
     address: 192.168.216.129:2181
   protocol:
     port: 28810
+server:
+  port: 8080

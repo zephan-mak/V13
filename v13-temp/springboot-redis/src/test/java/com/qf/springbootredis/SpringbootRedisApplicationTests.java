@@ -33,8 +33,8 @@ public class SpringbootRedisApplicationTests {
 
 	@Test
 	public void contextLoads() {
-		redisTemplate.opsForValue().set("k2", "v2");
-		System.out.println(redisTemplate.opsForValue().get("k2"));
+		redisTemplate.opsForValue().set("k3", "v3");
+		System.out.println(redisTemplate.opsForValue().get("k3"));
 	}
 
 	@Test

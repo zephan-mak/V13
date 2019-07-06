@@ -24,7 +24,7 @@ public class JJWTTest {
 
     @Test
     public void parse(){
-        String token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxIiwiaWF0IjoxNTYxNzIxMDM0LCJzdWIiOiJhZG1pbiIsImV4cCI6MTU2MTcyMTA2NH0.dMN6jRIUAhcJgr7HTkJct208f4N3s_RAIOUUbYHLtUs";
+        String token = TokenUtils.createJwtToken("1", null, "admin", 30 * 1000);
         Claims claims = null;
         String newToken = null;
         try {
@@ -32,25 +32,31 @@ public class JJWTTest {
         } catch (Exception e) {
             newToken = TokenUtils.createJwtToken(null, null, null, 10 * 1000);
         }
+        System.out.println(claims);
         System.out.println(newToken);
     }
 
     @Test
-    public void isExpired(){
-        String token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxIiwic3ViIjoidGVzdCIsImV4cCI6MTU2MTcxNTQ0NH0.Da58xaQDeN8fnLeCX40IUoMMCJCvBovlxH2Ci6TOdyk";
-        Claims claims = Jwts.parser().setSigningKey("java1902").parseClaimsJws(token).getBody();
+    public void isExpired() throws InterruptedException {
+        String token = TokenUtils.createJwtToken("1", null, "admin", 30 * 1000);
+        System.out.println(token);
+        Claims claims = Jwts.parser().setSigningKey("admin").parseClaimsJws(token).getBody();
         Date expiration = claims.getExpiration();
         long expirationTime = expiration.getTime();
 
         System.out.println(expirationTime);
         System.out.println(System.currentTimeMillis());
         long currentTimeMillis = System.currentTimeMillis();
-        if(expirationTime<currentTimeMillis){
-
+        Thread.sleep(10000);
+        if(expirationTime>currentTimeMillis){
+             token = TokenUtils.createJwtToken("1", null, "admin", 30 * 1000);
+            System.out.println(token);
         }
-        boolean before = expiration.before(new Date());
-        System.out.println(before);
+         claims = Jwts.parser().setSigningKey("admin").parseClaimsJws(token).getBody();
 
+        expiration = claims.getExpiration();
+        expirationTime = expiration.getTime();
+        System.out.println(expirationTime);
     }
 
 }

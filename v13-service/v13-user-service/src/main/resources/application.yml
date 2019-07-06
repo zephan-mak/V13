@@ -23,6 +23,7 @@ server:
 dubbo:
   application:
     name: user-api
+    qos-port: 22225
   registry:
     protocol: zookeeper
     address: 192.168.216.129:2181

@@ -20,6 +20,7 @@ public-key: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBANwPwSCd89R/m0XFDib6gN39QTAw967uq4qO
 dubbo:
   application:
     name: search-api
+    qos-port: 22223
   registry:
     protocol: zookeeper
     address: 192.168.216.129:2181

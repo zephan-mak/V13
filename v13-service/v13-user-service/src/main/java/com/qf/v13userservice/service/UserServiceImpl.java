@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.util.HashMap;
+
 /**
  * @author maizifeng
  * @Date 2019/6/25
@@ -50,13 +52,9 @@ public class UserServiceImpl extends BaseServiceImpl<TUser> implements IUserServ
         TUser currentUser = userMapper.selectByUsername(user.getUsername());
         if(currentUser!=null){
             if(passwordEncoder.matches(user.getPassword(), currentUser.getPassword())){
-                String uuid = TokenUtils.createJwtToken(currentUser.getId().toString(),"z" ,currentUser.getUsername(),30*60*1000 );
+                String uuid = TokenUtils.createJwtToken(currentUser.getId().toString(),null,currentUser.getUsername(),30*60*1000 );
                 return new ResultBean("200", uuid);
             }
-//            if(currentUser.getPassword().equals(user.getPassword())){
-//                String uuid = TokenUtils.createJwtToken(currentUser.getId().toString(),"z" ,currentUser.getUsername(),30*60*1000 );
-//                return new ResultBean("200", uuid);
-//            }
         }
         return new ResultBean("404", null);
     }
@@ -73,10 +71,19 @@ public class UserServiceImpl extends BaseServiceImpl<TUser> implements IUserServ
             TUser user=new TUser();
             user.setId(Long.parseLong(claims.getId()));
             user.setUsername(claims.getSubject());
-            return new ResultBean("200", user);
+
+            long expirationTime = claims.getExpiration().getTime();
+            long currentTime = System.currentTimeMillis();
+            if(expirationTime>currentTime){
+                uuid = TokenUtils.createJwtToken(user.getId().toString(), null, user.getUsername(), 30*60*1000);
+            }
+            HashMap<String,Object> map=new HashMap<>();
+            map.put("user", user);
+            map.put("uuid", uuid);
+            return new ResultBean("200", map);
         } catch (Exception e) {
             System.out.println(e);
-            return new ResultBean("404", null);
+            return new ResultBean("404", "登录超时请重新登录");
 
         }
     }

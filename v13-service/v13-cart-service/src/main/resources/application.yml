@@ -1,6 +1,7 @@
 dubbo:
   application:
     name: cart-api
+    qos-port: 22226
   registry:
     protocol: zookeeper
     address: 192.168.216.129:2181
